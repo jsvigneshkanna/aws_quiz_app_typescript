@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import quizData from "../data/quizData";
+import Thankyou from "../pages/Thankyou";
+import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "@reach/router";
 
 type Props = {};
 type Data = {
@@ -12,10 +15,14 @@ type Data = {
 };
 
 const QuizContainer = (props: Props) => {
+  const navigate = useNavigate();
   const [quiz, setQuiz] = useState<Data>();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   useEffect(() => {
+    if (currentQuestion === quizData.length - 1) {
+      return navigate("/thankyou", { replace: true, state: { overallScore: quizData.length, result: score } });
+    }
     setQuiz(quizData[currentQuestion]);
   }, [currentQuestion]);
 
@@ -35,8 +42,6 @@ const QuizContainer = (props: Props) => {
         wrongAnwerResultEl?.classList.add("hidden");
         setCurrentQuestion(currentQuestion + 1);
       }, 1000);
-    }
-    if (currentQuestion === quizData.length) {
     }
   };
 
