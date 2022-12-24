@@ -1,10 +1,16 @@
 import QuizContainer from "../components/QuizContainer";
-type Props = {};
+import { useLocation } from "react-router-dom";
+
+type Props = {
+  playerName: string;
+};
 
 const Quiz = (props: Props) => {
+  let location = useLocation();
+  const playerName = location.state?.playerName ?? props.playerName;
   return (
     <div>
-      <QuizContainer />
+      <QuizContainer playerName={playerName} />
     </div>
   );
 };

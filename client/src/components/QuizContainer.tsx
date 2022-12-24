@@ -4,7 +4,9 @@ import Thankyou from "../pages/Thankyou";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "@reach/router";
 
-type Props = {};
+type Props = {
+  playerName: string;
+};
 type Data = {
   question: String;
   optionA: String;
@@ -21,7 +23,10 @@ const QuizContainer = (props: Props) => {
   const [score, setScore] = useState<number>(0);
   useEffect(() => {
     if (currentQuestion === quizData.length - 1) {
-      return navigate("/thankyou", { replace: true, state: { overallScore: quizData.length, result: score } });
+      return navigate("/thankyou", {
+        replace: true,
+        state: { overallScore: quizData.length, result: score, playerName: props.playerName },
+      });
     }
     setQuiz(quizData[currentQuestion]);
   }, [currentQuestion]);
@@ -48,7 +53,7 @@ const QuizContainer = (props: Props) => {
   return (
     <div className="relative pt-40 md:pt-0 px-4 md:px-0">
       <div className="absolute top-5 right-5 md:right-20 bg-slate-700 dark:bg-sky-300 text-slate-100 dark:text-slate-800 p-2 rounded-2xl text-lg md:text-xl font-extrabold">
-        Score: {score}
+        Name: {props.playerName} | Score: {score}
       </div>
       <div className="flex justify-center items-center md:h-[75vh] flex-col w-full md:w-3/5 mx-auto">
         <div
