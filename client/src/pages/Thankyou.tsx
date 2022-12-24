@@ -32,7 +32,7 @@ const Thankyou = (props: Props) => {
           href="/"
           className="bg-slate-300 dark:bg-slate-700 mt-16 p-2 rounded-2xl font-semibold text-xl hover:scale-105"
         >
-          Try again
+          Try again 🔃
         </a>
       </div>
     </div>
