@@ -36,6 +36,8 @@ const QuizContainer = (props: Props) => {
         setCurrentQuestion(currentQuestion + 1);
       }, 1000);
     }
+    if (currentQuestion === quizData.length) {
+    }
   };
 
   return (
